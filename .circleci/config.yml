@@ -1,0 +1,17 @@
+version: 2.1
+
+executors:
+  jdk14:
+    docker:
+      - image: 'cimg/openjdk:14.0'
+orbs:
+  maven: circleci/maven@1.2.0
+
+workflows:
+  build:
+    jobs:
+      - maven/test:
+          name: Unit Tests
+          command: test
+          test_results_path: target/surefire-reports
+          executor: jdk14
