@@ -1,0 +1,8 @@
+service:
+  provider:
+    className: io.github.vehkiya.services.json.JsonDataProvider
+    source: src/main/resources/data.json
+  parser:
+    pattern: "(?<=\\[)(.+?)(?=])"
+server:
+  port: 8088
