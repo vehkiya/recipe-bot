@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
 import java.util.Objects;
@@ -41,7 +40,7 @@ public class JsonDataProvider implements DataProvider {
     @Override
     public void refresh() throws IOException {
         itemsCache.clear();
-        JsonSource jsonSource = readJsonFile();
+        var jsonSource = readJsonFile();
         jsonSource.getItems().values()
                 .stream()
                 .filter(Objects::nonNull)
@@ -50,11 +49,11 @@ public class JsonDataProvider implements DataProvider {
     }
 
     private JsonSource readJsonFile() throws IOException {
-        Path path = Paths.get(serviceProviderProperties.getSource());
+        var path = Paths.get(serviceProviderProperties.getSource());
         if (!path.toFile().exists()) {
-            throw new IllegalArgumentException("Source file " + path.toString() + " not found ");
+            throw new IllegalArgumentException("Source file " + path + " not found ");
         }
-        String content = new String(Files.readAllBytes(path));
+        var content = new String(Files.readAllBytes(path));
         return objectMapper.readValue(content, JsonSource.class);
     }
 

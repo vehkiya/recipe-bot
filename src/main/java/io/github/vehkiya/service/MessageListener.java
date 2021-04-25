@@ -11,9 +11,9 @@ import io.github.vehkiya.exception.InvalidConfigurationException;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import reactor.core.publisher.Flux;
 
 import javax.annotation.PostConstruct;
+import java.time.Duration;
 import java.util.Comparator;
 import java.util.Set;
 import java.util.function.Consumer;
@@ -22,6 +22,7 @@ import java.util.function.Consumer;
 public class MessageListener {
 
     private final String token;
+    private static final int DEFAULT_TIMEOUT = 500;
 
     @Autowired
     private TextParser textParser;
@@ -37,12 +38,12 @@ public class MessageListener {
 
     @PostConstruct
     public void init() {
-        DiscordClient client = DiscordClient.create(token);
+        var client = DiscordClient.create(token);
         gateway = client.login().block();
     }
 
     public void listen() {
-        Flux<MessageCreateEvent> messageFlux = gateway.on(MessageCreateEvent.class)
+        var messageFlux = gateway.on(MessageCreateEvent.class)
                 .onErrorContinue(RuntimeException.class, (throwable, o) -> log.error(throwable));
 
         messageFlux.subscribe(processMessage(), log::error);
@@ -51,21 +52,25 @@ public class MessageListener {
 
     private Consumer<MessageCreateEvent> processMessage() {
         return event -> {
-            final Message message = event.getMessage();
+            final var message = event.getMessage();
             if (shouldReply(message)) {
-                final MessageChannel channel = message.getChannel().block();
-                Set<Item> items = textParser.parseItemsFromText(message.getContent());
-                if (items.isEmpty()) {
-                    channel.createMessage("I could not find any matching items for your query :(").block();
-                } else {
-                    String response = buildResponseMessage(items);
-                    String stringBuilder = "I found following items you mentioned:" +
-                            System.lineSeparator() +
-                            response;
-                    channel.createMessage(stringBuilder).block();
-                }
+                var items = textParser.parseItemsFromText(message.getContent());
+                message.getChannel()
+                        .blockOptional(Duration.ofMillis(DEFAULT_TIMEOUT))
+                        .ifPresent(messageChannel -> reply(messageChannel, items));
             }
         };
+    }
+
+    private void reply(MessageChannel messageChannel, Set<Item> items) {
+        if (items.isEmpty()) {
+            messageChannel.createMessage("I could not find any matching items for your query :(").block();
+        } else {
+            var response = "I found following items you mentioned:" +
+                    System.lineSeparator() +
+                    buildResponseMessage(items);
+            messageChannel.createMessage(response).block();
+        }
     }
 
     private boolean shouldReply(Message message) {
@@ -75,7 +80,7 @@ public class MessageListener {
 
 
     public String buildResponseMessage(Set<Item> items) {
-        StringBuilder stringBuilder = new StringBuilder();
+        var stringBuilder = new StringBuilder();
         items.stream()
                 .sorted(Comparator.comparing(Item::getName))
                 .limit(10)

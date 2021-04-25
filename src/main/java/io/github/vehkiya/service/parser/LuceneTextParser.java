@@ -17,7 +17,6 @@ import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
-import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.MMapDirectory;
@@ -28,7 +27,6 @@ import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.*;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
@@ -52,7 +50,7 @@ public class LuceneTextParser implements TextParser {
 
     @PostConstruct
     public void init() throws IOException {
-        Path indexDir = Path.of("/tmp/lucene");
+        var indexDir = Path.of("/tmp/lucene");
         analyzer = new StandardAnalyzer();
         directory = new MMapDirectory(indexDir);
         pattern = Pattern.compile(serviceParserProperties.getPattern());
@@ -60,11 +58,11 @@ public class LuceneTextParser implements TextParser {
     }
 
     private void indexItems() throws IOException {
-        IndexWriterConfig indexWriterConfig = new IndexWriterConfig(analyzer);
-        IndexWriter indexWriter = new IndexWriter(directory, indexWriterConfig);
+        var indexWriterConfig = new IndexWriterConfig(analyzer);
+        var indexWriter = new IndexWriter(directory, indexWriterConfig);
         indexWriter.deleteAll();
         for (String itemName : dataProvider.itemsCache().keySet()) {
-            Document document = new Document();
+            var document = new Document();
             document.add(new TextField(ITEM_NAME_FIELD, itemName, Field.Store.YES));
             indexWriter.addDocument(document);
         }
@@ -79,7 +77,7 @@ public class LuceneTextParser implements TextParser {
 
     @Override
     public Set<Item> parseItemsFromText(String text) {
-        Matcher matcher = pattern.matcher(text);
+        var matcher = pattern.matcher(text);
         Set<String> buffer = new HashSet<>();
         while (matcher.find()) {
             String group = matcher.group();
@@ -95,12 +93,12 @@ public class LuceneTextParser implements TextParser {
 
     private Set<String> findAllMatchingItemNamesForTerm(String term) {
         try {
-            Float threshold = serviceParserProperties.getThreshold();
-            IndexReader indexReader = DirectoryReader.open(directory);
-            IndexSearcher indexSearcher = new IndexSearcher(indexReader);
-            QueryParser parser = new QueryParser(ITEM_NAME_FIELD, analyzer);
+            var threshold = serviceParserProperties.getThreshold();
+            var indexReader = DirectoryReader.open(directory);
+            var indexSearcher = new IndexSearcher(indexReader);
+            var parser = new QueryParser(ITEM_NAME_FIELD, analyzer);
             parser.setDefaultOperator(QueryParser.Operator.AND);
-            Query query = parser.parse(term + "~10");
+            var query = parser.parse(term + "~10");
             ScoreDoc[] hits = indexSearcher.search(query, 10).scoreDocs;
             return Arrays.stream(hits)
                     .filter(hit -> hit.score > threshold)
@@ -116,7 +114,7 @@ public class LuceneTextParser implements TextParser {
 
     private String getDocumentText(int docId, IndexReader indexReader) {
         try {
-            Document document = indexReader.document(docId);
+            var document = indexReader.document(docId);
             return document.get(ITEM_NAME_FIELD);
         } catch (IOException e) {
             log.error("Error while trying to retrieve document with id {}", docId, e);
