@@ -1,8 +1,9 @@
+package io.github.vehkiya.parser;
+
 import com.google.common.truth.Truth;
 import io.github.vehkiya.config.SpringConfiguration;
 import io.github.vehkiya.data.model.Item;
 import io.github.vehkiya.service.TextParser;
-import org.junit.Rule;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ class TextParserTests {
     private TextParser textParser;
 
     @Test
-    void exactMatch() throws Throwable {
+    void exactMatch() {
         assume().that(textParser).isNotNull();
         final String reference = "Steel Ingot";
         Set<Item> items = textParser.parseItemsFromText(reference);
