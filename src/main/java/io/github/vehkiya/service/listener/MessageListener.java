@@ -1,4 +1,4 @@
-package io.github.vehkiya.service;
+package io.github.vehkiya.service.listener;
 
 import discord4j.core.DiscordClient;
 import discord4j.core.GatewayDiscordClient;
@@ -8,6 +8,7 @@ import discord4j.core.object.entity.User;
 import discord4j.core.object.entity.channel.MessageChannel;
 import io.github.vehkiya.data.model.Item;
 import io.github.vehkiya.exception.InvalidConfigurationException;
+import io.github.vehkiya.service.TextParser;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;

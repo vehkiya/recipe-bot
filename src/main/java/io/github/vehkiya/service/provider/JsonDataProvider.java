@@ -1,4 +1,4 @@
-package io.github.vehkiya.service.json;
+package io.github.vehkiya.service.provider;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.vehkiya.config.ServiceProviderProperties;
@@ -8,7 +8,6 @@ import io.github.vehkiya.service.DataProvider;
 import lombok.Getter;
 import lombok.experimental.Accessors;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
@@ -18,7 +17,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
-@Service
 public class JsonDataProvider implements DataProvider {
 
     @Autowired
