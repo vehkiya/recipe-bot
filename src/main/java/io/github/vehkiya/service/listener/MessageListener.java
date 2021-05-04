@@ -17,7 +17,6 @@ import javax.annotation.PostConstruct;
 import java.time.Duration;
 import java.util.Comparator;
 import java.util.Set;
-import java.util.function.Consumer;
 
 @Log4j2
 public class MessageListener {
@@ -47,20 +46,18 @@ public class MessageListener {
         var messageFlux = gateway.on(MessageCreateEvent.class)
                 .onErrorContinue(RuntimeException.class, (throwable, o) -> log.error(throwable));
 
-        messageFlux.subscribe(processMessage(), log::error);
+        messageFlux.subscribe(this::processMessage, log::error);
         gateway.onDisconnect().block();
     }
 
-    private Consumer<MessageCreateEvent> processMessage() {
-        return event -> {
-            final var message = event.getMessage();
-            if (shouldReply(message)) {
-                var items = textParser.parseItemsFromText(message.getContent());
-                message.getChannel()
-                        .blockOptional(Duration.ofMillis(DEFAULT_TIMEOUT))
-                        .ifPresent(messageChannel -> reply(messageChannel, items));
-            }
-        };
+    private void processMessage(MessageCreateEvent event) {
+        final var message = event.getMessage();
+        if (shouldReply(message)) {
+            var items = textParser.parseItemsFromText(message.getContent());
+            message.getChannel()
+                    .blockOptional(Duration.ofMillis(DEFAULT_TIMEOUT))
+                    .ifPresent(messageChannel -> reply(messageChannel, items));
+        }
     }
 
     private void reply(MessageChannel messageChannel, Set<Item> items) {
