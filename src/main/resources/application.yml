@@ -3,6 +3,7 @@ service:
     className: io.github.vehkiya.service.provider.JsonDataProvider
     source: src/main/resources/data.json
   parser:
+    indexPath: ./target/
     threshold: 1.0
     pattern: "(?<=\\[)(.+?)(?=])"
 server:

@@ -15,6 +15,8 @@ public class ServiceParserProperties {
 
     private String pattern;
 
+    private String indexPath;
+
     @PostConstruct
     public void init() {
         if (threshold == null) {
