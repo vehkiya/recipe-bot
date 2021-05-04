@@ -6,7 +6,7 @@ import discord4j.core.event.domain.message.MessageCreateEvent;
 import discord4j.core.object.entity.Message;
 import discord4j.core.object.entity.User;
 import discord4j.core.object.entity.channel.MessageChannel;
-import io.github.vehkiya.data.model.Item;
+import io.github.vehkiya.data.model.domain.Item;
 import io.github.vehkiya.exception.InvalidConfigurationException;
 import io.github.vehkiya.service.TextParser;
 import lombok.extern.log4j.Log4j2;
@@ -83,10 +83,10 @@ public class MessageListener {
     public String buildResponseMessage(Set<Item> items) {
         var stringBuilder = new StringBuilder();
         items.stream()
-                .sorted(Comparator.comparing(Item::getName))
+                .sorted(Comparator.comparing(Item::name))
                 .limit(10)
                 .forEachOrdered(i -> {
-                    stringBuilder.append(i.getName());
+                    stringBuilder.append(i.name());
                     stringBuilder.append(System.lineSeparator());
                 });
         return stringBuilder.toString();

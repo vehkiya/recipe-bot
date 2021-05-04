@@ -1,6 +1,6 @@
 package io.github.vehkiya.service;
 
-import io.github.vehkiya.data.model.Item;
+import io.github.vehkiya.data.model.domain.Item;
 
 import java.util.Set;
 

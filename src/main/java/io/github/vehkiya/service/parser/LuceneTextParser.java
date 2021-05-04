@@ -1,7 +1,7 @@
 package io.github.vehkiya.service.parser;
 
 import io.github.vehkiya.config.ServiceParserProperties;
-import io.github.vehkiya.data.model.Item;
+import io.github.vehkiya.data.model.domain.Item;
 import io.github.vehkiya.service.DataProvider;
 import io.github.vehkiya.service.TextParser;
 import lombok.extern.log4j.Log4j2;

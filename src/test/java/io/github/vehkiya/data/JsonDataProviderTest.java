@@ -3,7 +3,7 @@ package io.github.vehkiya.data;
 import com.google.common.truth.Truth8;
 import com.google.common.truth.TruthJUnit;
 import io.github.vehkiya.config.SpringConfiguration;
-import io.github.vehkiya.data.model.Item;
+import io.github.vehkiya.data.model.domain.Item;
 import io.github.vehkiya.service.provider.JsonDataProvider;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -26,6 +26,6 @@ class JsonDataProviderTest {
         final String itemName = "Steel Ingot";
         Optional<Item> item = jsonDataProvider.findByName(itemName);
         Truth8.assertThat(item).isPresent();
-        Truth8.assertThat(item.map(Item::getName)).hasValue(itemName);
+        Truth8.assertThat(item.map(Item::name)).hasValue(itemName);
     }
 }
