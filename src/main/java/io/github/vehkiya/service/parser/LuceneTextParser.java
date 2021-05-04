@@ -25,7 +25,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
-import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -50,9 +50,9 @@ public class LuceneTextParser implements TextParser {
 
     @PostConstruct
     public void init() throws IOException {
-        var indexDir = Path.of("/tmp/lucene");
+        var luceneDir = Paths.get(serviceParserProperties.getIndexPath(), "lucene.dir");
         analyzer = new StandardAnalyzer();
-        directory = new MMapDirectory(indexDir);
+        directory = new MMapDirectory(luceneDir);
         pattern = Pattern.compile(serviceParserProperties.getPattern());
         indexItems();
     }
