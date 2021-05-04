@@ -19,6 +19,9 @@
         <maven.compiler.source>14</maven.compiler.source>
         <maven.compiler.target>14</maven.compiler.target>
         <maven.surefire.plugin.version>3.0.0-M5</maven.surefire.plugin.version>
+        <sonar.projectKey>Vehkiya_recipe-bot</sonar.projectKey>
+        <sonar.organization>vehkiya</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <spring.boot.version>2.4.3</spring.boot.version>
         <spring.version>5.3.4</spring.version>
         <truth.version>1.1.2</truth.version>

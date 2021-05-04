@@ -7,6 +7,16 @@ executors:
 orbs:
   maven: circleci/maven@1.2.0
 
+
+jobs:
+  sonar-scan:
+    executor: jdk14
+    steps:
+      - checkout
+      - run:
+          name: Analyze on SonarCloud
+          command: mvn verify sonar:sonar
+
 workflows:
   build:
     jobs:
@@ -15,3 +25,7 @@ workflows:
           command: test
           test_results_path: target/surefire-reports
           executor: jdk14
+  sonar-check:
+    jobs:
+      - sonar-scan:
+          context: SonarCloud
