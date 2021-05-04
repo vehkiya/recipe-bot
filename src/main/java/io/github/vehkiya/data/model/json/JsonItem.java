@@ -1,14 +1,18 @@
 package io.github.vehkiya.data.model.json;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import io.github.vehkiya.data.model.Item;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 @Data
+@Accessors(chain = true, fluent = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class JsonItem implements Item {
+public class JsonItem {
 
+    @JsonProperty("slug")
     private String slug;
 
+    @JsonProperty("name")
     private String name;
 }

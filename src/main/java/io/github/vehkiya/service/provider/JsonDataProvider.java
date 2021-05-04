@@ -2,7 +2,8 @@ package io.github.vehkiya.service.provider;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.vehkiya.config.ServiceProviderProperties;
-import io.github.vehkiya.data.model.Item;
+import io.github.vehkiya.data.model.domain.Item;
+import io.github.vehkiya.data.model.json.JsonItem;
 import io.github.vehkiya.data.model.json.JsonSource;
 import io.github.vehkiya.service.DataProvider;
 import lombok.Getter;
@@ -16,6 +17,7 @@ import java.nio.file.Paths;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
 
 public class JsonDataProvider implements DataProvider {
 
@@ -42,8 +44,13 @@ public class JsonDataProvider implements DataProvider {
         jsonSource.getItems().values()
                 .stream()
                 .filter(Objects::nonNull)
-                .filter(jsonItem -> Objects.nonNull(jsonItem.getName()))
-                .forEach(item -> itemsCache.put(item.getName(), item));
+                .filter(jsonItem -> Objects.nonNull(jsonItem.name()))
+                .map(itemConverter())
+                .forEach(item -> itemsCache.put(item.name(), item));
+    }
+
+    private Function<JsonItem, Item> itemConverter() {
+        return jsonItem -> new Item().name(jsonItem.name());
     }
 
     private JsonSource readJsonFile() throws IOException {

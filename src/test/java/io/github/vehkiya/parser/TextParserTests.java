@@ -2,7 +2,7 @@ package io.github.vehkiya.parser;
 
 import com.google.common.truth.Truth;
 import io.github.vehkiya.config.SpringConfiguration;
-import io.github.vehkiya.data.model.Item;
+import io.github.vehkiya.data.model.domain.Item;
 import io.github.vehkiya.service.TextParser;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -31,7 +31,7 @@ class TextParserTests {
         Set<Item> items = textParser.parseItemsFromText(reference);
         items.forEach(item -> {
             Truth.assertThat(item).isNotNull();
-            Truth.assertThat(item.getName()).containsMatch(reference);
+            Truth.assertThat(item.name()).containsMatch(reference);
         });
     }
 
@@ -53,7 +53,7 @@ class TextParserTests {
         strings.stream()
                 .map(s -> textParser.parseItemsFromText(s))
                 .flatMap(Collection::stream)
-                .map(Item::getName)
+                .map(Item::name)
                 .forEach(itemName -> Truth.assertThat(itemName).matches(reference));
     }
 }

@@ -1,6 +1,6 @@
 package io.github.vehkiya.service;
 
-import io.github.vehkiya.data.model.Item;
+import io.github.vehkiya.data.model.domain.Item;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
