@@ -4,15 +4,13 @@ import com.google.common.truth.Truth8;
 import com.google.common.truth.TruthJUnit;
 import io.github.vehkiya.config.SpringConfiguration;
 import io.github.vehkiya.data.model.Item;
-import io.github.vehkiya.service.json.JsonDataProvider;
-import org.junit.jupiter.api.BeforeEach;
+import io.github.vehkiya.service.provider.JsonDataProvider;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import java.io.IOException;
 import java.util.Optional;
 
 @ExtendWith({SpringExtension.class})
@@ -21,11 +19,6 @@ class JsonDataProviderTest {
 
     @Autowired
     private JsonDataProvider jsonDataProvider;
-
-    @BeforeEach
-    void setUp() throws IOException {
-        jsonDataProvider.init();
-    }
 
     @Test
     void verifyItemsLoad() {
