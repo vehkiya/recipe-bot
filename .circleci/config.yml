@@ -151,7 +151,7 @@ workflows:
           requires:
             - hold
       - docker-release:
-          name: Publish Snapshot on DockerHub
+          name: Publish Release on DockerHub
           context: Docker
           requires:
             - 'Unit Tests'
