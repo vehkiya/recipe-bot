@@ -53,6 +53,25 @@ commands:
                 working_directory: << parameters.app_src_directory >>
       - maven/process_test_results:
           test_results_path: << parameters.test_results_path >>
+  mvn-jib:
+    parameters:
+      maven-command:
+        default: package
+        type: string
+      profiles:
+        default: default
+        type: string
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ./target
+      - restore_cache:
+          keys:
+            # when lock file changes, use increasingly general patterns to restore cache
+            - maven-repo-v1-{{ .Branch }}-{{ checksum "pom.xml" }}
+            - maven-repo-v1-{{ .Branch }}-
+            - maven-repo-v1-
+      - run: mvn << parameters.maven-command >> -P<< parameters.profiles >>
 
 jobs:
   build-test:
@@ -64,6 +83,9 @@ jobs:
           root: ./
           paths:
             - target/
+      - store_artifacts:
+          path: /target/*recipe-bot*.jar
+          destination: recipe-bot.jar
       - save_cache:
           paths:
             - ~/.m2
@@ -83,26 +105,16 @@ jobs:
       - run:
           name: Analyze on SonarCloud
           command: mvn verify sonar:sonar
-  docker-build:
+  docker-snapshot:
     executor: jdk14
-    environment:
-      IMAGE_NAME: vehkiya/recipe-bot
     steps:
-      - setup_remote_docker
-      - checkout
-      - attach_workspace:
-          at: ./target
-      - restore_cache:
-          keys:
-            # when lock file changes, use increasingly general patterns to restore cache
-            - maven-repo-v1-{{ .Branch }}-{{ checksum "pom.xml" }}
-            - maven-repo-v1-{{ .Branch }}-
-            - maven-repo-v1-
-      - run: |
-          TAG=0.1.$CIRCLE_BUILD_NUM
-          docker build -t $IMAGE_NAME:$TAG .
-          echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
-          docker push $IMAGE_NAME:$TAG
+      - mvn-jib:
+          profiles: build-snapshot
+  docker-release:
+    executor: jdk14
+    steps:
+      - mvn-jib:
+          profiles: build-release
 
 
 workflows:
@@ -116,12 +128,36 @@ workflows:
           context: SonarCloud
           requires:
             - 'Unit Tests'
-      - docker-build:
-          name: Publish Image on DockerHub
+      - docker-snapshot:
+          name: Publish Snapshot on DockerHub
           context: Docker
           requires:
             - 'Unit Tests'
-#          filters:
-#            branches:
-#              only:
-#                - master
+          filters:
+            branches:
+              only:
+                - master
+  release:
+    jobs:
+      - hold:
+          type: approval
+          filters:
+            branches:
+              only:
+                - master
+                - release\/.*
+      - build-test:
+          name: Unit Tests
+          requires:
+            - hold
+      - docker-release:
+          name: Publish Snapshot on DockerHub
+          context: Docker
+          requires:
+            - 'Unit Tests'
+            - hold
+          filters:
+            branches:
+              only:
+                - master
+                - release\/.*
