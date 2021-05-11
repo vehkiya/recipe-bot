@@ -26,6 +26,8 @@
         <spring.version>5.3.4</spring.version>
         <truth.version>1.1.2</truth.version>
         <lucene.version>8.8.1</lucene.version>
+        <build.number>0</build.number>
+        <maven.build.timestamp.format>yyyyMMdd-HHmmssSSS</maven.build.timestamp.format>
     </properties>
 
     <build>
@@ -50,8 +52,95 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <from>
+                        <image>adoptopenjdk:14-jre-openj9</image>
+                    </from>
+                    <to>
+                        <auth>
+                            <username>${DOCKER_USER}</username>
+                            <password>${DOCKER_PASS}</password>
+                        </auth>
+                        <image>docker.io/vehkiya/recipe-bot</image>
+                    </to>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>build-snapshot</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>${maven.surefire.plugin.version}</version>
+                    </plugin>
+                    <plugin>
+                        <groupId>com.google.cloud.tools</groupId>
+                        <artifactId>jib-maven-plugin</artifactId>
+                        <version>3.0.0</version>
+                        <configuration>
+                            <to>
+                                <tags>
+                                    <tag>latest</tag>
+                                    <tag>SNAPSHOT-${maven.build.timestamp}</tag>
+                                </tags>
+                            </to>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>build</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>build-release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <version>${maven.surefire.plugin.version}</version>
+                    </plugin>
+                    <plugin>
+                        <groupId>com.google.cloud.tools</groupId>
+                        <artifactId>jib-maven-plugin</artifactId>
+                        <version>3.0.0</version>
+                        <configuration>
+                            <to>
+                                <tags>
+                                    <tag>latest</tag>
+                                    <tag>release</tag>
+                                    <tag>${project.version}</tag>
+                                </tags>
+                            </to>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>build</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <dependencies>
         <dependency>
