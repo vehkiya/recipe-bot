@@ -32,7 +32,7 @@ public class JsonDataProvider implements DataProvider {
     private ObjectMapper objectMapper;
 
     @PostConstruct
-    public void init() throws IOException {
+    private void init() throws IOException {
         itemsCache = new ConcurrentHashMap<>();
         refresh();
     }
