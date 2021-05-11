@@ -37,7 +37,7 @@ public class MessageListener {
     }
 
     @PostConstruct
-    public void init() {
+    private void init() {
         var client = DiscordClient.create(token);
         gateway = client.login().block();
     }

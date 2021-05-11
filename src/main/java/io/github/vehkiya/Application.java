@@ -29,7 +29,7 @@ public class Application {
     }
 
     @PostConstruct
-    public void start() {
+    private void start() {
         log.info("Started InfoBot");
         messageListener.listen();
     }

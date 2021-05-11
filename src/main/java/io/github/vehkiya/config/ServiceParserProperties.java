@@ -18,7 +18,7 @@ public class ServiceParserProperties {
     private String indexPath;
 
     @PostConstruct
-    public void init() {
+    private void init() {
         if (threshold == null) {
             threshold = 1.0f;
         }

@@ -147,14 +147,13 @@ workflows:
                 - master
                 - release\/.*
       - build-test:
-          name: Unit Tests
           requires:
             - hold
       - docker-release:
           name: Publish Release on DockerHub
           context: Docker
           requires:
-            - 'Unit Tests'
+            - build-test
             - hold
           filters:
             branches:

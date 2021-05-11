@@ -49,7 +49,7 @@ public class LuceneTextParser implements TextParser {
     private static final String ITEM_NAME_FIELD = "itemName";
 
     @PostConstruct
-    public void init() throws IOException {
+    private void init() throws IOException {
         var luceneDir = Paths.get(serviceParserProperties.getIndexPath(), "lucene.dir");
         analyzer = new StandardAnalyzer();
         directory = new MMapDirectory(luceneDir);
