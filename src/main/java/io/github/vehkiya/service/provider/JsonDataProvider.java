@@ -50,7 +50,7 @@ public class JsonDataProvider implements DataProvider {
     }
 
     private Function<JsonItem, Item> itemConverter() {
-        return jsonItem -> new Item().name(jsonItem.name());
+        return jsonItem -> new Item(jsonItem.name());
     }
 
     private JsonSource readJsonFile() throws IOException {
