@@ -90,21 +90,6 @@ jobs:
           paths:
             - ~/.m2
           key: maven-repo-v1-{{ .Branch }}-{{ checksum "pom.xml" }}
-  sonar-scan:
-    executor: jdk14
-    steps:
-      - checkout
-      - attach_workspace:
-          at: ./target
-      - restore_cache:
-          keys:
-            # when lock file changes, use increasingly general patterns to restore cache
-            - maven-repo-v1-{{ .Branch }}-{{ checksum "pom.xml" }}
-            - maven-repo-v1-{{ .Branch }}-
-            - maven-repo-v1-
-      - run:
-          name: Analyze on SonarCloud
-          command: mvn verify sonar:sonar
   docker-snapshot:
     executor: jdk14
     steps:
@@ -123,11 +108,6 @@ workflows:
     jobs:
       - build-test:
           name: Unit Tests
-      - sonar-scan:
-          name: SonarCloud code quality check
-          context: SonarCloud
-          requires:
-            - 'Unit Tests'
       - docker-snapshot:
           name: Publish Snapshot on DockerHub
           context: Docker
