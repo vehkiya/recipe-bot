@@ -55,7 +55,7 @@
             <plugin>
                 <groupId>com.google.cloud.tools</groupId>
                 <artifactId>jib-maven-plugin</artifactId>
-                <version>3.0.0</version>
+                <version>3.2.1</version>
                 <configuration>
                     <from>
                         <image>adoptopenjdk:14-jre-openj9</image>
@@ -85,7 +85,7 @@
                     <plugin>
                         <groupId>com.google.cloud.tools</groupId>
                         <artifactId>jib-maven-plugin</artifactId>
-                        <version>3.0.0</version>
+                        <version>3.2.1</version>
                         <configuration>
                             <to>
                                 <tags>
@@ -118,7 +118,7 @@
                     <plugin>
                         <groupId>com.google.cloud.tools</groupId>
                         <artifactId>jib-maven-plugin</artifactId>
-                        <version>3.0.0</version>
+                        <version>3.2.1</version>
                         <configuration>
                             <to>
                                 <tags>
