@@ -15,7 +15,7 @@
         <discord4j.version>3.2.2</discord4j.version>
         <jackson-databind.version>2.13.2.2</jackson-databind.version>
         <junit.version>5.8.2</junit.version>
-        <lombok.version>1.18.22</lombok.version>
+        <lombok.version>1.18.24</lombok.version>
         <maven.compiler.source>14</maven.compiler.source>
         <maven.compiler.target>14</maven.compiler.target>
         <maven.surefire.plugin.version>3.0.0-M5</maven.surefire.plugin.version>
