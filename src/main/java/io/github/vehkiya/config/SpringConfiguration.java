@@ -42,7 +42,7 @@ public class SpringConfiguration {
             throw new InvalidConfigurationException("Null classLoader");
         }
         try {
-            Class<? extends DataProvider> loadClass = (Class<? extends DataProvider>) classLoader.loadClass(serviceProviderProperties.getClassName());
+            Class<?> loadClass = classLoader.loadClass(serviceProviderProperties.getClassName());
             return (DataProvider) beanFactory.autowire(loadClass, AutowireCapableBeanFactory.AUTOWIRE_BY_TYPE, true);
         } catch (ClassNotFoundException e) {
             throw new InvalidConfigurationException("Cannot Find class " + serviceProviderProperties.getClassName());

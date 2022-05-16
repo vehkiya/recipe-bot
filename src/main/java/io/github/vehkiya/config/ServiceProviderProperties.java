@@ -12,4 +12,12 @@ public class ServiceProviderProperties {
     private String className;
 
     private String source;
+
+    public String getClassName() {
+        return className;
+    }
+
+    public String getSource() {
+        return source;
+    }
 }
