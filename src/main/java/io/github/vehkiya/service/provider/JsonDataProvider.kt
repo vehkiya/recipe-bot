@@ -20,6 +20,7 @@ class JsonDataProvider : DataProvider {
     lateinit var objectMapper: ObjectMapper
     lateinit var properties: ServiceProviderProperties
 
+    //todo: make this smarter
     @Autowired
     fun initBeans(
         objectMapper: ObjectMapper,
@@ -46,7 +47,6 @@ class JsonDataProvider : DataProvider {
             .values
             .stream()
             .filter { it != null }
-            .filter { it.name != null }
             .map(convertItem())
             .forEach { itemsCache[it.name] = it }
     }
