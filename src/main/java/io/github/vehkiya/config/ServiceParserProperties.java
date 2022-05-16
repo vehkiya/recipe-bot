@@ -17,6 +17,18 @@ public class ServiceParserProperties {
 
     private String indexPath;
 
+    public Float getThreshold() {
+        return threshold;
+    }
+
+    public String getPattern() {
+        return pattern;
+    }
+
+    public String getIndexPath() {
+        return indexPath;
+    }
+
     @PostConstruct
     private void init() {
         if (threshold == null) {
