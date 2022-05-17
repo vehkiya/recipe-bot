@@ -4,6 +4,7 @@ import io.github.vehkiya.config.ServiceParserProperties
 import io.github.vehkiya.data.model.domain.Item
 import io.github.vehkiya.service.DataProvider
 import io.github.vehkiya.service.TextParser
+import io.github.vehkiya.util.logger
 import org.apache.lucene.analysis.Analyzer
 import org.apache.lucene.analysis.standard.StandardAnalyzer
 import org.apache.lucene.document.Document
@@ -18,7 +19,6 @@ import org.apache.lucene.search.IndexSearcher
 import org.apache.lucene.store.Directory
 import org.apache.lucene.store.MMapDirectory
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.context.annotation.Primary
 import org.springframework.stereotype.Service
 import java.nio.file.Path
 import java.nio.file.Paths
@@ -35,6 +35,7 @@ import java.util.regex.Pattern
     private val directory: Directory = MMapDirectory(luceneDir)
     private val pattern: Pattern = Pattern.compile(serviceParserProperties.pattern)
     private val itemNameField = "itemName"
+    private val log = logger<LuceneKtTextParser>()
 
     init {
         indexItems()
@@ -49,7 +50,7 @@ import java.util.regex.Pattern
             document.add(TextField(itemNameField, itemName, Field.Store.YES))
             indexWriter.addDocument(document)
         }
-        //todo: log "Indexed {} items"
+        log.info("Indexed ${indexWriter.docStats.numDocs} items")
         indexWriter.close()
     }
 
