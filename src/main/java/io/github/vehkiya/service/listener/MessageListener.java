@@ -9,8 +9,9 @@ import discord4j.core.object.entity.channel.MessageChannel;
 import io.github.vehkiya.data.model.domain.Item;
 import io.github.vehkiya.exception.InvalidConfigurationException;
 import io.github.vehkiya.service.TextParser;
-import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
@@ -18,8 +19,9 @@ import java.time.Duration;
 import java.util.Comparator;
 import java.util.Set;
 
-@Log4j2
 public class MessageListener {
+
+    private final Log log = LogFactory.getLog(MessageListener.class);
 
     private final String token;
     private static final int DEFAULT_TIMEOUT = 500;
