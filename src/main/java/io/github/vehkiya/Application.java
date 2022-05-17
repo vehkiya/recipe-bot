@@ -3,7 +3,8 @@ package io.github.vehkiya;
 import io.github.vehkiya.config.SpringConfiguration;
 import io.github.vehkiya.exception.InvalidConfigurationException;
 import io.github.vehkiya.service.listener.MessageListener;
-import lombok.extern.log4j.Log4j2;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -13,10 +14,11 @@ import org.springframework.context.annotation.Import;
 
 import javax.annotation.PostConstruct;
 
-@Log4j2
 @SpringBootApplication
 @Import(SpringConfiguration.class)
 public class Application {
+
+    private final Log log = LogFactory.getLog(Application.class);
 
     @Value("${service.integration.key:}")
     private String token;
