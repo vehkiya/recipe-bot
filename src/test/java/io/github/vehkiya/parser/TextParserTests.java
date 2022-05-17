@@ -1,7 +1,7 @@
 package io.github.vehkiya.parser;
 
 import com.google.common.truth.Truth;
-import io.github.vehkiya.config.SpringConfiguration;
+import io.github.vehkiya.config.ApplicationConfiguration;
 import io.github.vehkiya.data.model.domain.Item;
 import io.github.vehkiya.service.TextParser;
 import org.junit.jupiter.api.Test;
@@ -18,7 +18,7 @@ import java.util.Set;
 import static com.google.common.truth.TruthJUnit.assume;
 
 @ExtendWith({SpringExtension.class})
-@SpringBootTest(classes = SpringConfiguration.class)
+@SpringBootTest(classes = ApplicationConfiguration.class)
 class TextParserTests {
 
     @Autowired

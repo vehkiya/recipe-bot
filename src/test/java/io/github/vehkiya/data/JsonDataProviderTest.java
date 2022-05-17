@@ -2,7 +2,7 @@ package io.github.vehkiya.data;
 
 import com.google.common.truth.Truth8;
 import com.google.common.truth.TruthJUnit;
-import io.github.vehkiya.config.SpringConfiguration;
+import io.github.vehkiya.config.ApplicationConfiguration;
 import io.github.vehkiya.data.model.domain.Item;
 import io.github.vehkiya.service.provider.JsonDataProvider;
 import org.junit.jupiter.api.Test;
@@ -14,7 +14,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.util.Optional;
 
 @ExtendWith({SpringExtension.class})
-@SpringBootTest(classes = SpringConfiguration.class)
+@SpringBootTest(classes = ApplicationConfiguration.class)
 class JsonDataProviderTest {
 
     @Autowired

@@ -9,11 +9,9 @@ import io.github.vehkiya.data.model.domain.Item
 import io.github.vehkiya.service.TextParser
 import io.github.vehkiya.util.logger
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.beans.factory.annotation.Value
-import org.springframework.stereotype.Service
 import java.time.Duration
 
-@Service class MessageListener(@Value("\${service.integration.key:}") private val token: String) {
+class MessageListener(private val token: String) {
 
     private val log = logger<MessageListener>()
     private val defaultTimeout = 500L
@@ -60,18 +58,15 @@ import java.time.Duration
     }
 
     private fun shouldReply(message: Message): Boolean {
-        return !message.author.map { it.isBot }.orElse(true)
-                && textParser.messageMatchesPattern(message.content)
+        return !message.author.map { it.isBot }.orElse(true) && textParser.messageMatchesPattern(message.content)
     }
 
     fun buildResponseMessage(items: Set<Item>): String {
         val stringBuilder = StringBuilder()
-        items.sortedBy { item -> item.name }
-            .take(10)
-            .forEach {
-                stringBuilder.append(it.name)
-                stringBuilder.append(System.lineSeparator())
-            }
+        items.sortedBy { item -> item.name }.take(10).forEach {
+            stringBuilder.append(it.name)
+            stringBuilder.append(System.lineSeparator())
+        }
         return stringBuilder.toString()
     }
 
