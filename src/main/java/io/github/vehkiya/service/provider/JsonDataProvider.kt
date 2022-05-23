@@ -3,7 +3,6 @@ package io.github.vehkiya.service.provider
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.github.vehkiya.config.ServiceProviderProperties
 import io.github.vehkiya.data.model.domain.Item
-import io.github.vehkiya.data.model.json.JsonItem
 import io.github.vehkiya.data.model.json.JsonSource
 import io.github.vehkiya.service.DataProvider
 import org.springframework.beans.factory.annotation.Autowired
@@ -43,16 +42,14 @@ class JsonDataProvider : DataProvider {
         val jsonSource = readJsonFile()
         jsonSource.items
             .values
-            .stream()
-            .filter { it != null }
-            .map(convertItem())
+            .map { convert { Item(it.name) } }
             .forEach { itemsCache[it.name] = it }
     }
 
-    private fun convertItem() = { jsonItem: JsonItem -> Item(jsonItem.name) }
+    private inline fun <T> convert(mapper: () -> T): T = mapper.invoke()
 
     private fun readJsonFile(): JsonSource {
-        val path = Path(properties.source!!)
+        val path = Path(properties.source)
         if (path.notExists()) {
             throw IllegalArgumentException("Source file $path not found")
         }
