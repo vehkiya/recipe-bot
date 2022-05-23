@@ -9,7 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.junit.jupiter.SpringExtension
 
-@ExtendWith(SpringExtension::class) @SpringBootTest(classes = [ApplicationConfiguration::class])
+@ExtendWith(SpringExtension::class)
+@SpringBootTest(classes = [ApplicationConfiguration::class])
 class JsonDataProviderTest {
     @Autowired
     private lateinit var jsonDataProvider: JsonDataProvider
@@ -17,8 +18,8 @@ class JsonDataProviderTest {
     @Test
     internal fun `Verify Items Load`() {
         val itemName = "Steel Ingot"
-        val optionalItem = jsonDataProvider.findByName(itemName)
-        Assertions.assertThat(optionalItem).isPresent
-        Assertions.assertThat(optionalItem.map { it.name }).hasValue(itemName)
+        val item = jsonDataProvider.findByName(itemName)
+        Assertions.assertThat(item).isNotNull
+        Assertions.assertThat(item?.name).isEqualTo(itemName)
     }
 }

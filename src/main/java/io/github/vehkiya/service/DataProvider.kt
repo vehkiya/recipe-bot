@@ -10,9 +10,8 @@ interface DataProvider {
 
     fun refresh()
 
-    fun findByName(itemName: String): Optional<Item> {
-        return Optional.ofNullable(itemName)
-            .map { StringUtils.normalizeSpace(it.trim()) }
-            .map { itemsCache()[it] }
+    fun findByName(itemName: String): Item? {
+        val normalizedName = StringUtils.normalizeSpace(itemName.trim())
+        return itemsCache()[normalizedName]
     }
 }

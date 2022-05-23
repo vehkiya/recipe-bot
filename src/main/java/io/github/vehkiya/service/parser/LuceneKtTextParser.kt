@@ -22,10 +22,10 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import java.nio.file.Path
 import java.nio.file.Paths
-import java.util.*
 import java.util.regex.Pattern
 
-@Service class LuceneKtTextParser(
+@Service
+class LuceneKtTextParser(
     @Autowired var dataProvider: DataProvider,
     @Autowired var serviceParserProperties: ServiceParserProperties
 ) : TextParser {
@@ -63,7 +63,7 @@ import java.util.regex.Pattern
             val itemNames = findAllMatchingItemNamesForTerm(matcher.group())
             buffer.addAll(itemNames)
         }
-        return buffer.map { dataProvider.findByName(it) }.filter { it.isPresent }.map { it.get() }.toSet()
+        return buffer.mapNotNull { dataProvider.findByName(it) }.toSet()
     }
 
     private fun findAllMatchingItemNamesForTerm(term: String): Set<String> {
@@ -74,8 +74,7 @@ import java.util.regex.Pattern
         val query = parser.parse("$term~10")
         val hits = indexSearcher.search(query, 10).scoreDocs
         return hits.filter { it.score > serviceParserProperties.threshold }
-            .map { getDocumentText(it.doc, indexReader) }
-            .filter { Objects.nonNull(it) }
+            .mapNotNull { getDocumentText(it.doc, indexReader) }
             .toSet()
     }
 
