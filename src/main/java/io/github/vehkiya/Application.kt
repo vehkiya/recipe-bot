@@ -1,6 +1,7 @@
 package io.github.vehkiya
 
 import io.github.vehkiya.config.ApplicationConfiguration
+import io.github.vehkiya.config.PersistenceConfiguration
 import io.github.vehkiya.service.listener.MessageListener
 import io.github.vehkiya.util.logger
 import org.springframework.beans.factory.annotation.Autowired
@@ -11,7 +12,7 @@ import org.springframework.context.ApplicationContext
 import org.springframework.context.annotation.Import
 import javax.annotation.PostConstruct
 
-@SpringBootApplication @Import(ApplicationConfiguration::class) class Application {
+@SpringBootApplication @Import(ApplicationConfiguration::class, PersistenceConfiguration::class) class Application {
 
     private val log = logger<Application>()
 
