@@ -34,6 +34,11 @@
         <log4j.version>2.17.2</log4j.version>
         <assertj.version>3.23.1</assertj.version>
         <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
+        <hikari.version>5.0.1</hikari.version>
+        <!-- Upgrade together with Spring-->
+        <hibernate.version>5.6.9.Final</hibernate.version>
+        <h2.version>2.1.212</h2.version>
+        <jakarta.persistence-api.version>3.1.0</jakarta.persistence-api.version>
     </properties>
 
     <build>
@@ -88,7 +93,12 @@
                     <jvmTarget>${java.version}</jvmTarget>
                     <compilerPlugins>
                         <plugin>spring</plugin>
+                        <plugin>jpa</plugin>
+                        <plugin>all-open</plugin>
                     </compilerPlugins>
+                    <pluginOptions>
+                        <option>all-open:annotation=javax.persistence.Entity</option>
+                    </pluginOptions>
                     <args>
                         <arg>-Xjsr305=strict</arg>
                     </args>
@@ -317,6 +327,11 @@
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-reflect</artifactId>
+            <version>${kotlin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-test-junit</artifactId>
             <version>${kotlin.version}</version>
             <scope>test</scope>
@@ -336,6 +351,32 @@
             <groupId>org.apache.lucene</groupId>
             <artifactId>lucene-backward-codecs</artifactId>
             <version>${lucene.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-test-autoconfigure</artifactId>
+            <version>${spring.boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>${hikari.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <version>${spring.boot.version}</version>
         </dependency>
     </dependencies>
 </project>

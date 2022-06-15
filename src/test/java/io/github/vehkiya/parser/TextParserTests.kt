@@ -17,7 +17,6 @@ class TextParserTests {
     private lateinit var textParser: TextParser
 
     private fun validateItemAgainstReference(item: Item, reference: String) {
-
         Assertions.assertThat(item).isNotNull
         Assertions.assertThat(item.name).contains(reference)
     }

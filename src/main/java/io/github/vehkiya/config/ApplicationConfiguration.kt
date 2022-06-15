@@ -7,7 +7,6 @@ import io.github.vehkiya.service.DataProvider
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory
 import org.springframework.boot.SpringBootConfiguration
-import org.springframework.boot.context.properties.ConfigurationPropertiesScan
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.ApplicationContext
 import org.springframework.context.annotation.Bean
