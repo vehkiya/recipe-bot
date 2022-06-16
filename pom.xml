@@ -37,7 +37,7 @@
         <hikari.version>5.0.1</hikari.version>
         <!-- Upgrade together with Spring-->
         <hibernate.version>5.6.9.Final</hibernate.version>
-        <h2.version>2.1.212</h2.version>
+        <h2.version>2.1.214</h2.version>
         <jakarta.persistence-api.version>3.1.0</jakarta.persistence-api.version>
     </properties>
 
