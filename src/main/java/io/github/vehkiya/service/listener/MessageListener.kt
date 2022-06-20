@@ -9,15 +9,19 @@ import io.github.vehkiya.data.model.domain.Item
 import io.github.vehkiya.service.TextParser
 import io.github.vehkiya.util.logger
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.stereotype.Service
 import java.time.Duration
 
-class MessageListener(private val token: String) {
+@Service
+class MessageListener
+@Autowired constructor(
+    @Value("\${service.integration.key:}") token: String,
+    val textParser: TextParser
+) {
 
     private val log = logger<MessageListener>()
     private val defaultTimeout = 500L
-
-    @Autowired
-    private lateinit var textParser: TextParser
 
     private val gateway: GatewayDiscordClient
 

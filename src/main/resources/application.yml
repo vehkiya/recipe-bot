@@ -24,3 +24,5 @@ spring:
     generate-ddl: true
     database-platform: org.hibernate.dialect.H2Dialect
     defer-datasource-initialization: true
+spring.application.name: "Recipe Bot"
+logging.level.: INFO

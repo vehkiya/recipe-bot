@@ -9,7 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest(classes = [PersistenceConfiguration::class])
-class PersistenceTests @Autowired constructor(val itemRepository: ItemRepository) {
+class PersistenceTests
+@Autowired constructor(val itemRepository: ItemRepository) {
 
     @Test
     internal fun `Database write`() {

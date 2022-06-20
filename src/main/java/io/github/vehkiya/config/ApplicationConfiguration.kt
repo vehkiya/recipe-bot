@@ -15,17 +15,16 @@ import org.springframework.context.annotation.ComponentScan
 @ComponentScan(
     "io.github.vehkiya.controller",
     "io.github.vehkiya.config",
-    "io.github.vehkiya.service.listener",
-    "io.github.vehkiya.service.parser"
+    "io.github.vehkiya.service.parser",
+    "io.github.vehkiya.service.provider"
 )
 @SpringBootConfiguration
-@EnableConfigurationProperties class ApplicationConfiguration {
-
-    @Autowired
-    lateinit var serviceProviderProperties: ServiceProviderProperties
-
-    @Autowired
-    lateinit var applicationContext: ApplicationContext
+@EnableConfigurationProperties
+class ApplicationConfiguration
+@Autowired constructor(
+    val serviceProviderProperties: ServiceProviderProperties,
+    val applicationContext: ApplicationContext
+) {
 
     @Bean fun objectMapper(): ObjectMapper {
         return ObjectMapper().apply { registerKotlinModule() }
@@ -37,11 +36,11 @@ import org.springframework.context.annotation.ComponentScan
         classLoader ?: throw InvalidConfigurationException("Null classLoader")
         try {
             val loadClass = classLoader.loadClass(serviceProviderProperties.className)
-            return beanFactory.autowire(loadClass, AutowireCapableBeanFactory.AUTOWIRE_BY_TYPE, true) as DataProvider
+            return beanFactory.autowire(loadClass, AutowireCapableBeanFactory.AUTOWIRE_CONSTRUCTOR, true) as DataProvider
         } catch (e: ClassNotFoundException) {
-            throw InvalidConfigurationException("Cannot Find class ${serviceProviderProperties.className}");
+            throw InvalidConfigurationException("Cannot Find class ${serviceProviderProperties.className}")
         } catch (e: ClassCastException) {
-            throw InvalidConfigurationException("Class ${serviceProviderProperties.className} is not a DataProvider type");
+            throw InvalidConfigurationException("Class ${serviceProviderProperties.className} is not a DataProvider type")
         }
     }
 }
