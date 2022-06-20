@@ -1,4 +1,4 @@
-package io.github.vehkiya.service;
+package io.github.vehkiya.service
 
 import io.github.vehkiya.data.model.domain.Item
 

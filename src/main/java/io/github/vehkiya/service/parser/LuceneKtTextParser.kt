@@ -25,9 +25,10 @@ import java.nio.file.Paths
 import java.util.regex.Pattern
 
 @Service
-class LuceneKtTextParser(
-    @Autowired var dataProvider: DataProvider,
-    @Autowired var serviceParserProperties: ServiceParserProperties
+class LuceneKtTextParser
+@Autowired constructor(
+    val dataProvider: DataProvider,
+    val serviceParserProperties: ServiceParserProperties
 ) : TextParser {
 
     private val luceneDir: Path = Paths.get(serviceParserProperties.indexPath, "lucene.dir")

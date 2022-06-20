@@ -7,6 +7,4 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 data class JsonSource(
     val items: Map<String, JsonItem>
-) {
-
-}
+)

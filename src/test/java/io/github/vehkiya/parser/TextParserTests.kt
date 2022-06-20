@@ -5,16 +5,12 @@ import io.github.vehkiya.data.model.domain.Item
 import io.github.vehkiya.service.TextParser
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.test.context.junit.jupiter.SpringExtension
 
-@ExtendWith(SpringExtension::class) @SpringBootTest(classes = [ApplicationConfiguration::class])
-class TextParserTests {
-
-    @Autowired
-    private lateinit var textParser: TextParser
+@SpringBootTest(classes = [ApplicationConfiguration::class])
+class TextParserTests
+@Autowired constructor(val textParser: TextParser) {
 
     private fun validateItemAgainstReference(item: Item, reference: String) {
         Assertions.assertThat(item).isNotNull

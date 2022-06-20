@@ -5,31 +5,24 @@ import io.github.vehkiya.config.PersistenceConfiguration
 import io.github.vehkiya.service.listener.MessageListener
 import io.github.vehkiya.util.logger
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
-import org.springframework.context.ApplicationContext
 import org.springframework.context.annotation.Import
-import javax.annotation.PostConstruct
 
-@SpringBootApplication @Import(ApplicationConfiguration::class, PersistenceConfiguration::class) class Application {
+@SpringBootApplication
+@Import(ApplicationConfiguration::class, PersistenceConfiguration::class)
+class Application
+@Autowired constructor(
+    messageListener: MessageListener
+) {
 
     private val log = logger<Application>()
 
-    @Value("\${service.integration.key:}")
-    private lateinit var token: String
-
-    @Autowired
-    lateinit var applicationContext: ApplicationContext
-
-    @PostConstruct fun startListener() {
-        val messageListener = MessageListener(token)
-        applicationContext.autowireCapableBeanFactory.autowireBean(messageListener)
+    init {
         messageListener.listen()
         log.info("Started InfoBot")
     }
 }
-
 
 fun main(args: Array<String>) {
     runApplication<Application>(*args)

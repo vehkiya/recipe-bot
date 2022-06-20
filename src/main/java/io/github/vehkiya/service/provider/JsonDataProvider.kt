@@ -6,30 +6,21 @@ import io.github.vehkiya.data.model.domain.Item
 import io.github.vehkiya.data.model.json.JsonSource
 import io.github.vehkiya.service.DataProvider
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Service
 import java.nio.file.Files
-import javax.annotation.PostConstruct
 import kotlin.io.path.Path
 import kotlin.io.path.notExists
 
-class JsonDataProvider : DataProvider {
+@Service
+class JsonDataProvider
+@Autowired constructor(
+    val objectMapper: ObjectMapper,
+    val properties: ServiceProviderProperties
+) : DataProvider {
 
     private val itemsCache: MutableMap<String, Item> = mutableMapOf()
 
-    lateinit var objectMapper: ObjectMapper
-    lateinit var properties: ServiceProviderProperties
-
-    //todo: make this smarter
-    @Autowired
-    fun initBeans(
-        objectMapper: ObjectMapper,
-        properties: ServiceProviderProperties
-    ) {
-        this.objectMapper = objectMapper
-        this.properties = properties
-    }
-
-    @PostConstruct
-    fun postConstruct() {
+    init {
         refresh()
     }
 
@@ -37,7 +28,7 @@ class JsonDataProvider : DataProvider {
         return itemsCache
     }
 
-    override fun refresh() {
+    final override fun refresh() {
         itemsCache.clear()
         val jsonSource = readJsonFile()
         jsonSource.items
