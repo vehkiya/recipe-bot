@@ -8,6 +8,8 @@ service:
     pattern: "(?<=\\[)(.+?)(?=])"
 server:
   port: 8088
+  http2:
+    enabled: true
 datasource:
   h2:
     driverClassName: org.h2.Driver
@@ -25,4 +27,6 @@ spring:
     database-platform: org.hibernate.dialect.H2Dialect
     defer-datasource-initialization: true
 spring.application.name: "Recipe Bot"
-logging.level.: INFO
+logging:
+  level:
+    root: info

@@ -28,7 +28,7 @@ import java.util.regex.Pattern
 class LuceneKtTextParser
 @Autowired constructor(
     val dataProvider: DataProvider,
-    val serviceParserProperties: ServiceParserProperties
+    private val serviceParserProperties: ServiceParserProperties
 ) : TextParser {
 
     private val luceneDir: Path = Paths.get(serviceParserProperties.indexPath, "lucene.dir")
@@ -46,7 +46,7 @@ class LuceneKtTextParser
         val indexWriterConfig = IndexWriterConfig(analyzer)
         val indexWriter = IndexWriter(directory, indexWriterConfig)
         indexWriter.deleteAll()
-        for (itemName in dataProvider.itemsCache().keys) {
+        for (itemName in dataProvider.itemCache().keys) {
             val document = Document()
             document.add(TextField(itemNameField, itemName, Field.Store.YES))
             indexWriter.addDocument(document)

@@ -18,23 +18,23 @@ class JsonDataProvider
     val properties: ServiceProviderProperties
 ) : DataProvider {
 
-    private val itemsCache: MutableMap<String, Item> = mutableMapOf()
+    private val itemCache: MutableMap<String, Item> = mutableMapOf()
 
     init {
         refresh()
     }
 
-    override fun itemsCache(): Map<String, Item> {
-        return itemsCache
+    override fun itemCache(): Map<String, Item> {
+        return itemCache
     }
 
     final override fun refresh() {
-        itemsCache.clear()
+        itemCache.clear()
         val jsonSource = readJsonFile()
         jsonSource.items
             .values
             .map { convert { Item(it.name) } }
-            .forEach { itemsCache[it.name] = it }
+            .forEach { itemCache[it.name] = it }
     }
 
     private inline fun <T> convert(mapper: () -> T): T = mapper.invoke()

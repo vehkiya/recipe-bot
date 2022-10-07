@@ -14,7 +14,7 @@
         <java.version>17</java.version>
         <apache.commons.version>3.12.0</apache.commons.version>
         <discord4j.version>3.2.3</discord4j.version>
-        <jackson-databind.version>2.13.4</jackson-databind.version>
+        <jackson-databind.version>2.14.0-rc1</jackson-databind.version>
         <junit.version>5.9.1</junit.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -40,6 +40,8 @@
         <h2.version>2.1.214</h2.version>
         <jakarta.persistence-api.version>3.1.0</jakarta.persistence-api.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <DOCKER_USER/>
+        <DOCKER_PASS/>
     </properties>
 
     <build>
