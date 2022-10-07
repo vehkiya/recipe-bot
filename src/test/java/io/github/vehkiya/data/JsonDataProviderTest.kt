@@ -12,7 +12,7 @@ class JsonDataProviderTest
 @Autowired constructor(val jsonDataProvider: JsonDataProvider) {
 
     @Test
-    internal fun `Verify Items Load`() {
+    internal fun `Verify Items can be found`() {
         val itemName = "Steel Ingot"
         val item = jsonDataProvider.findByName(itemName)
         Assertions.assertThat(item).isNotNull

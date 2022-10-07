@@ -13,7 +13,6 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
 
 @ComponentScan(
-    "io.github.vehkiya.controller",
     "io.github.vehkiya.config",
     "io.github.vehkiya.service.parser",
     "io.github.vehkiya.service.provider"
