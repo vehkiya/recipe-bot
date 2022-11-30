@@ -42,7 +42,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <DOCKER_USER/>
         <DOCKER_PASS/>
-        <slf4j-api.version>2.0.4</slf4j-api.version>
+        <slf4j-api.version>2.0.5</slf4j-api.version>
     </properties>
 
     <build>
