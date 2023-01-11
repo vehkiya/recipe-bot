@@ -29,9 +29,7 @@ class MessageListener
         require(token.isNotEmpty()) {
             "Cannot start without credentials. Please set [service.integration.key] property"
         }
-        DiscordClient.create(token).apply {
-            gateway = login().block() as GatewayDiscordClient
-        }
+        gateway = DiscordClient.create(token).login().block() as GatewayDiscordClient
     }
 
     fun listen() {
