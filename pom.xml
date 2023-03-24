@@ -40,8 +40,8 @@
         <h2.version>2.1.214</h2.version>
         <jakarta.persistence-api.version>3.1.0</jakarta.persistence-api.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <DOCKER_USER/>
-        <DOCKER_PASS/>
+        <docker.user/>
+        <docker.token/>
         <slf4j-api.version>2.0.7</slf4j-api.version>
     </properties>
 
@@ -82,8 +82,8 @@
                     </from>
                     <to>
                         <auth>
-                            <username>${DOCKER_USER}</username>
-                            <password>${DOCKER_PASS}</password>
+                            <username>${docker.user}</username>
+                            <password>${docker.token}</password>
                         </auth>
                         <image>docker.io/vehkiya/recipe-bot</image>
                     </to>
