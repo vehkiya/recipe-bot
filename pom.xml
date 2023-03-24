@@ -78,7 +78,7 @@
                 <version>3.3.1</version>
                 <configuration>
                     <from>
-                        <image>adoptopenjdk:14-jre-openj9</image>
+                        <image>azul/zulu-openjdk:17</image>
                     </from>
                     <to>
                         <auth>
