@@ -179,47 +179,6 @@
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>${jacoco-maven-plugin.version}</version>
             </plugin>
-            <plugin>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <tasks>
-                                <echo>used version: ${jgitver.used_version}</echo>
-                                <echo>version calculated: ${jgitver.calculated_version}</echo>
-                                <echo>CURRENT_VERSION_PATCH: ${jgitver.current_version_patch}</echo>
-                                <echo>CURRENT_VERSION_MINOR: ${jgitver.current_version_minor}</echo>
-                                <echo>CURRENT_VERSION_MAJOR: ${jgitver.current_version_major}</echo>
-                                <echo>NEXT_VERSION_PATCH: ${jgitver.next_patch_version}</echo>
-                                <echo>NEXT_VERSION_MINOR: ${jgitver.next_minor_version}</echo>
-                                <echo>NEXT_VERSION_MAJOR: ${jgitver.next_major_version}</echo>
-                                <echo>dirty: ${jgitver.dirty}</echo>
-                                <echo>head_committer_name: ${jgitver.head_committer_name}</echo>
-                                <echo>head_commiter_email: ${jgitver.head_commiter_email}</echo>
-                                <echo>head_commit_datetime: ${jgitver.head_commit_datetime}</echo>
-                                <echo>git_sha1_full: ${jgitver.git_sha1_full}</echo>
-                                <echo>git_sha1_8: ${jgitver.git_sha1_8}</echo>
-                                <echo>branch_name: ${jgitver.branch_name}</echo>
-                                <echo>head_tags: ${jgitver.head_tags}</echo>
-                                <echo>head_annotated_tags: ${jgitver.head_annotated_tags}</echo>
-                                <echo>head_lightweight_tags: ${jgitver.head_lightweight_tags}</echo>
-                                <echo>base_tag: ${jgitver.base_tag}</echo>
-                                <echo>base_tag: ${jgitver.base_tag_type}</echo>
-                                <echo>all_tags: ${jgitver.all_tags}</echo>
-                                <echo>all_annotated_tags: ${jgitver.all_annotated_tags}</echo>
-                                <echo>all_lightweight_tags: ${jgitver.all_lightweight_tags}</echo>
-                                <echo>all_version_tags: ${jgitver.all_version_tags}</echo>
-                                <echo>all_version_annotated_tags: ${jgitver.all_version_annotated_tags}</echo>
-                                <echo>all_version_lightweight_tags: ${jgitver.all_version_lightweight_tags}</echo>
-                            </tasks>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
     </build>
 
