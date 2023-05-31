@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
     <artifactId>satisfactory-recipe-bot</artifactId>
-    <version>0.3.0-SNAPSHOT</version>
+    <version>0.3.0</version>
     <name>Recipe-Bot</name>
     <url>https://github.com/Vehkiya/</url>
 
     <scm>
         <connection>scm:git:http://github.com/Vehkiya/recipe-bot.git</connection>
         <developerConnection>scm:git:https://github.com/Vehkiya/recipe-bot.git</developerConnection>
-    </scm>
+      <tag>0.3.0</tag>
+  </scm>
 
     <properties>
         <java.version>17</java.version>
@@ -45,8 +44,8 @@
         <h2.version>2.1.214</h2.version>
         <jakarta.persistence-api.version>3.1.0</jakarta.persistence-api.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <docker.user/>
-        <docker.token/>
+        <docker.user />
+        <docker.token />
         <slf4j-api.version>2.0.7</slf4j-api.version>
         <sonar-maven-plugin.version>3.9.1.2184</sonar-maven-plugin.version>
         <jacoco-maven-plugin.version>0.8.10</jacoco-maven-plugin.version>
