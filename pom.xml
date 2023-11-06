@@ -34,7 +34,7 @@
         <log4j.version>2.21.1</log4j.version>
         <assertj.version>3.24.2</assertj.version>
         <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
-        <hikari.version>5.0.1</hikari.version>
+        <hikari.version>5.1.0</hikari.version>
         <!-- Upgrade together with Spring-->
         <hibernate.version>6.1.5.Final</hibernate.version>
         <h2.version>2.2.224</h2.version>
