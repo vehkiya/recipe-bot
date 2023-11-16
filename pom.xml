@@ -14,7 +14,7 @@
         <java.version>17</java.version>
         <apache.commons.version>3.13.0</apache.commons.version>
         <discord4j.version>3.2.6</discord4j.version>
-        <jackson-databind.version>2.15.3</jackson-databind.version>
+        <jackson-databind.version>2.16.0</jackson-databind.version>
         <junit.version>5.10.1</junit.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
