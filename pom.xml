@@ -42,7 +42,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <docker.user/>
         <docker.token/>
-        <slf4j-api.version>2.0.9</slf4j-api.version>
+        <slf4j-api.version>2.0.11</slf4j-api.version>
         <sonar-maven-plugin.version>3.10.0.2594</sonar-maven-plugin.version>
         <jacoco-maven-plugin.version>0.8.11</jacoco-maven-plugin.version>
     </properties>
