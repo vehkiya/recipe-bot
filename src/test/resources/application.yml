@@ -7,14 +7,12 @@ service:
     pattern: "(?<=\\[)(.+?)(?=])"
 server:
   port: 8088
-datasource:
-  h2:
-    driverClassName: org.h2.Driver
+spring:
+  datasource:
     url: jdbc:h2:mem:refdata
     username: sa
     password: password
-    maximum-pool-size: 20
-spring:
+    driverClassName: org.h2.Driver
   h2:
     console:
       enabled: true
