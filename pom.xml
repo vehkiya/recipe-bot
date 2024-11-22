@@ -31,7 +31,7 @@
         <kotlin.version>2.0.21</kotlin.version>
         <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
         <jackson-module-kotlin.version>2.18.1</jackson-module-kotlin.version>
-        <log4j.version>2.24.1</log4j.version>
+        <log4j.version>2.24.2</log4j.version>
         <assertj.version>3.26.3</assertj.version>
         <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
         <hikari.version>6.2.1</hikari.version>
