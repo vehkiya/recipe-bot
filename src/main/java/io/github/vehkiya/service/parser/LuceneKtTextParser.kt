@@ -11,10 +11,8 @@ import org.apache.lucene.document.Document
 import org.apache.lucene.document.Field
 import org.apache.lucene.document.TextField
 import org.apache.lucene.index.DirectoryReader
-import org.apache.lucene.index.IndexReader
 import org.apache.lucene.index.IndexWriter
 import org.apache.lucene.index.IndexWriterConfig
-import org.apache.lucene.index.StoredFields
 import org.apache.lucene.queryparser.classic.QueryParser
 import org.apache.lucene.search.IndexSearcher
 import org.apache.lucene.store.Directory
@@ -76,7 +74,7 @@ class LuceneKtTextParser
         val query = parser.parse("$term~10")
         val hits = indexSearcher.search(query, 10).scoreDocs
         return hits.filter { it.score > serviceParserProperties.threshold }
-            .mapNotNull { indexReader.storedFields().document(it.doc).get(itemNameField) }
+            .mapNotNull { indexReader.storedFields().document(it.doc)[itemNameField] }
             .toSet()
     }
 }
