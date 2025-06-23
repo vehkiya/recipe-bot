@@ -22,7 +22,7 @@
         <sonar.projectKey>Vehkiya_recipe-bot</sonar.projectKey>
         <sonar.organization>vehkiya</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <spring.boot.version>3.5.2</spring.boot.version>
+        <spring.boot.version>3.5.3</spring.boot.version>
         <spring.version>6.2.8</spring.version>
         <lucene.version>10.2.1</lucene.version>
         <lucene.analyzers.version>8.11.4</lucene.analyzers.version>
