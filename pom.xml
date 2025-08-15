@@ -28,7 +28,7 @@
         <lucene.analyzers.version>8.11.4</lucene.analyzers.version>
         <build.number>0</build.number>
         <maven.build.timestamp.format>yyyyMMdd-HHmmssSSS</maven.build.timestamp.format>
-        <kotlin.version>2.2.0</kotlin.version>
+        <kotlin.version>2.2.10</kotlin.version>
         <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
         <jackson-module-kotlin.version>2.19.2</jackson-module-kotlin.version>
         <log4j.version>2.25.1</log4j.version>
