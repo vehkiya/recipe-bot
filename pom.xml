@@ -13,7 +13,7 @@
     <properties>
         <java.version>21</java.version>
         <apache.commons.version>3.18.0</apache.commons.version>
-        <discord4j.version>3.2.8</discord4j.version>
+        <discord4j.version>3.2.9</discord4j.version>
         <jackson-databind.version>2.19.2</jackson-databind.version>
         <junit.version>5.13.4</junit.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
