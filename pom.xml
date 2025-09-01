@@ -43,7 +43,7 @@
         <docker.user/>
         <docker.token/>
         <slf4j-api.version>2.0.17</slf4j-api.version>
-        <sonar-maven-plugin.version>5.1.0.4751</sonar-maven-plugin.version>
+        <sonar-maven-plugin.version>5.2.0.4988</sonar-maven-plugin.version>
         <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
     </properties>
 
