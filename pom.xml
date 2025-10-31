@@ -30,7 +30,7 @@
         <maven.build.timestamp.format>yyyyMMdd-HHmmssSSS</maven.build.timestamp.format>
         <kotlin.version>2.2.21</kotlin.version>
         <kotlin.compiler.incremental>true</kotlin.compiler.incremental>
-        <jackson-module-kotlin.version>2.20.0</jackson-module-kotlin.version>
+        <jackson-module-kotlin.version>2.20.1</jackson-module-kotlin.version>
         <log4j.version>2.25.2</log4j.version>
         <assertj.version>3.27.6</assertj.version>
         <maven-compiler-plugin.version>3.14.1</maven-compiler-plugin.version>
