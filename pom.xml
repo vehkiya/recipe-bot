@@ -15,7 +15,7 @@
         <apache.commons.version>3.20.0</apache.commons.version>
         <discord4j.version>3.3.0</discord4j.version>
         <jackson-databind.version>2.20.1</jackson-databind.version>
-        <junit.version>6.0.1</junit.version>
+        <junit.version>6.0.2</junit.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven.surefire.plugin.version>3.5.4</maven.surefire.plugin.version>
