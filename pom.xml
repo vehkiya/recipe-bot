@@ -23,7 +23,7 @@
         <sonar.organization>vehkiya</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <spring.boot.version>3.5.7</spring.boot.version>
-        <spring.version>6.2.12</spring.version>
+        <spring.version>7.0.5</spring.version>
         <lucene.version>10.3.2</lucene.version>
         <lucene.analyzers.version>8.11.4</lucene.analyzers.version>
         <build.number>0</build.number>
