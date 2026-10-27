@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>MagicNumber:LuceneKtTextParser.kt$LuceneKtTextParser$10</ID>
+    <ID>MagicNumber:MessageListener.kt$MessageListener$10</ID>
+    <ID>MagicNumber:MessageListener.kt$MessageListener$500L</ID>
+    <ID>MaxLineLength:ApplicationConfiguration.kt$ApplicationConfiguration$return beanFactory.autowire(loadClass, AutowireCapableBeanFactory.AUTOWIRE_CONSTRUCTOR, true) as DataProvider</ID>
+    <ID>MaxLineLength:ApplicationConfiguration.kt$ApplicationConfiguration$throw InvalidConfigurationException("Class ${serviceProviderProperties.className} is not a DataProvider type")</ID>
+    <ID>NewLineAtEndOfFile:ApplicationConfiguration.kt$io.github.vehkiya.config.ApplicationConfiguration.kt</ID>
+    <ID>NewLineAtEndOfFile:DataProvider.kt$io.github.vehkiya.service.DataProvider.kt</ID>
+    <ID>NewLineAtEndOfFile:InvalidConfigurationException.kt$io.github.vehkiya.exception.InvalidConfigurationException.kt</ID>
+    <ID>NewLineAtEndOfFile:Item.kt$io.github.vehkiya.data.model.persistence.Item.kt</ID>
+    <ID>NewLineAtEndOfFile:ItemRepository.kt$io.github.vehkiya.data.repository.ItemRepository.kt</ID>
+    <ID>NewLineAtEndOfFile:JsonDataProvider.kt$io.github.vehkiya.service.provider.JsonDataProvider.kt</ID>
+    <ID>NewLineAtEndOfFile:JsonDataProviderTest.kt$io.github.vehkiya.data.JsonDataProviderTest.kt</ID>
+    <ID>NewLineAtEndOfFile:LogUtil.kt$io.github.vehkiya.util.LogUtil.kt</ID>
+    <ID>NewLineAtEndOfFile:LuceneKtTextParser.kt$io.github.vehkiya.service.parser.LuceneKtTextParser.kt</ID>
+    <ID>NewLineAtEndOfFile:MessageListener.kt$io.github.vehkiya.service.listener.MessageListener.kt</ID>
+    <ID>NewLineAtEndOfFile:PersistenceConfiguration.kt$io.github.vehkiya.config.PersistenceConfiguration.kt</ID>
+    <ID>NewLineAtEndOfFile:PersistenceTests.kt$io.github.vehkiya.persistence.PersistenceTests.kt</ID>
+    <ID>NewLineAtEndOfFile:Recipe.kt$io.github.vehkiya.data.model.domain.Recipe.kt</ID>
+    <ID>NewLineAtEndOfFile:ServiceParserProperties.kt$io.github.vehkiya.config.ServiceParserProperties.kt</ID>
+    <ID>NewLineAtEndOfFile:ServiceProviderProperties.kt$io.github.vehkiya.config.ServiceProviderProperties.kt</ID>
+    <ID>NewLineAtEndOfFile:TextParserTests.kt$io.github.vehkiya.parser.TextParserTests.kt</ID>
+    <ID>SpreadOperator:Application.kt$(*args)</ID>
+    <ID>SwallowedException:ApplicationConfiguration.kt$ApplicationConfiguration$e: ClassCastException</ID>
+    <ID>SwallowedException:ApplicationConfiguration.kt$ApplicationConfiguration$e: ClassNotFoundException</ID>
+    <ID>ThrowsCount:ApplicationConfiguration.kt$ApplicationConfiguration$@Bean fun dataProvider(): DataProvider</ID>
+    <ID>UseRequire:JsonDataProvider.kt$JsonDataProvider$throw IllegalArgumentException("Source file $path not found")</ID>
+  </CurrentIssues>
+</SmellBaseline>
