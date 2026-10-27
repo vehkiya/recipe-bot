@@ -19,9 +19,6 @@
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven.surefire.plugin.version>3.5.5</maven.surefire.plugin.version>
-        <sonar.projectKey>Vehkiya_recipe-bot</sonar.projectKey>
-        <sonar.organization>vehkiya</sonar.organization>
-        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <spring.boot.version>3.5.7</spring.boot.version>
         <spring.version>6.2.12</spring.version>
         <lucene.version>10.4.0</lucene.version>
@@ -43,7 +40,6 @@
         <docker.user/>
         <docker.token/>
         <slf4j-api.version>2.0.17</slf4j-api.version>
-        <sonar-maven-plugin.version>5.6.0.6792</sonar-maven-plugin.version>
         <jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
     </properties>
 
@@ -168,11 +164,6 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.sonarsource.scanner.maven</groupId>
-                <artifactId>sonar-maven-plugin</artifactId>
-                <version>${sonar-maven-plugin.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>
